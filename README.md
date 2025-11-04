@@ -1,59 +1,151 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🏥 SISTEM MANAJEMEN RUMAH SAKIT HAKIM HOSPITAL
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi Web berbasis Laravel 12 untuk memenuhi persyaratan Proyek Tengah Semester mata kuliah Pemrograman Web II.
 
-## About Laravel
+A. DESKRIPSI APLIKASI
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sistem ini dirancang untuk mengelola data inti operasional rumah sakit kecil, mencakup data pasien, layanan yang tersedia, dan pencatatan riwayat rekam medis (kunjungan/transaksi) yang menghubungkan pasien dengan layanan yang diterimanya.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Fitur Utama yang Tersedia:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+CRUD Master Data: Pasien dan Layanan.
 
-## Learning Laravel
+Relasi Data: Pencatatan Rekam Medis (Menghubungkan Pasien dan Layanan).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Autentikasi Kustom: Pendaftaran pengguna dengan detail tambahan (No. HP, Alamat, Jenis Kelamin).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Fitur Lanjutan: Search, Pagination, dan Upload File (Foto Pasien).
 
-## Laravel Sponsors
+B. KEBUTUHAN SISTEM
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Untuk menjalankan proyek ini, pastikan sistem Anda memenuhi persyaratan berikut:
 
-### Premium Partners
+Web Server: Apache / Nginx
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+PHP: Versi 8.3 atau lebih tinggi
 
-## Contributing
+Database: MySQL / MariaDB
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Composer: Versi terbaru
 
-## Code of Conduct
+Node.js & NPM: Versi terbaru (diperlukan untuk kompilasi Tailwind CSS)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+C. CARA INSTALASI
 
-## Security Vulnerabilities
+Ikuti langkah-langkah berikut di terminal Anda:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Kloning Repositori
 
-## License
+git clone <LINK_REPO_ANDA> sistem-rumahsakit
+cd sistem-rumahsakit
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+2. Konfigurasi Awal
+
+Salin file lingkungan dan buat App Key:
+
+cp .env.example .env
+php artisan key:generate
+
+
+3. Instalasi Dependensi
+
+Instal library PHP (Composer) dan library Frontend (NPM):
+
+composer install
+npm install
+
+
+4. Konfigurasi Database
+
+Atur kredensial database Anda di file .env (misalnya DB_DATABASE=sistem_rs, DB_USERNAME=root).
+
+5. Migrasi Database
+
+Jalankan migrasi untuk membuat semua tabel (users, pasiens, layanans, rekam_medis):
+
+php artisan migrate:fresh
+
+
+6. Kompilasi Aset
+
+Kompilasi CSS (Tailwind) dan buat Symlink untuk fitur Upload File:
+
+npm run dev
+php artisan storage:link
+
+
+7. Jalankan Aplikasi
+
+php artisan serve
+
+
+Aplikasi dapat diakses di http://127.0.0.1:8000.
+
+D. AKUN DEMO
+
+Peran
+
+Username (Email)
+
+Password
+
+Keterangan
+
+Admin
+
+admin@hakim.com
+
+password
+
+Buat akun ini melalui halaman /register dan gunakan untuk demo fitur.
+
+E. STRUKTUR UTAMA FOLDER (MVC)
+
+Folder
+
+Komponen
+
+Entitas
+
+Keterangan
+
+app/Http/Controllers/
+
+Controller
+
+Pasien, Layanan, RekamMedis
+
+Logika bisnis (CRUD, Search, dll.)
+
+app/Models/
+
+Model (Eloquent)
+
+User, Pasien, Layanan, RekamMedis
+
+Interaksi dengan database dan definisi relasi data.
+
+database/migrations/
+
+Migrations
+
+All Tables
+
+Skema database dan relasi antar tabel.
+
+resources/views/
+
+View (Blade)
+
+pasien/*, layanan/*, rekam-medis/*
+
+Tampilan (HTML) dan UI/UX aplikasi.
+
+routes/
+
+Routes
+
+web.php
+
+Definsi URL aplikasi (Route::resource).
